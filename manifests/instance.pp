@@ -144,6 +144,7 @@ define elasticsearch::instance (
   Hash                               $init_defaults                 = {},
   Optional[Stdlib::Absolutepath]     $init_defaults_file            = undef,
   String                             $init_template                 = $elasticsearch::init_template,
+  Optional[Hash]                     $jvm_options_defaults          = undef,
   Array[String]                      $jvm_options                   = $elasticsearch::jvm_options,
   Optional[String]                   $keystore_password             = undef,
   Optional[Stdlib::Absolutepath]     $keystore_path                 = undef,

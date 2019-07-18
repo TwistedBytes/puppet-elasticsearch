@@ -6,7 +6,7 @@ def set_default(options, match_string, default)
   options.detect {|o| o.include?(match_string)} || options.push(default)
 end
 
-defaults = {
+local_defaults = {
   '-Xms' => '-Xms2g',
   '-Xmx' => '-Xmx2g',
   'UseConcMarkSweepGC' => '-XX:+UseConcMarkSweepGC',
@@ -33,6 +33,13 @@ defaults = {
   'NumberOfGCLogFiles' => '-XX:NumberOfGCLogFiles=32',
   'GCLogFileSize' => '-XX:GCLogFileSize=64m',
 }
+
+if @jvm_options_defaults
+  defaults = @jvm_options_defaults
+else
+  defaults = local_defaults
+end
+
 defaults.each {|k,v| set_default(@jvm_options, k, v)}
 
 -%>
